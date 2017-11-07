@@ -31,4 +31,4 @@ class CreateAccount extends Component {
     };
 }
 
-export default SignIn;
+export default CreateAccount;

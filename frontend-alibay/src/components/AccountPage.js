@@ -16,21 +16,18 @@ class AccountPage extends Component {
                         <h2>Items Purchased</h2>
                         <ul>
                             <li>test1</li>
-
                         </ul>
                     </div>
                     <div className="ItemsSold">
                         <h2>Items Sold</h2>
                         <ul>
                             <li>test1</li>
-
                         </ul>
                     </div>
                     <div className="ItemsForSale">
                         <h2>Items for Sale</h2>
                         <ul>
                             <li>test1</li>
-
                         </ul>
                     </div>
                 </div>
