@@ -22,13 +22,17 @@ class SellStuff extends Component {
                         Description:
           <input type="text" />
                     </label>
-                    Upload image: <button> Search computer </button>
-                    <button> Upload now </button>
+                    {/* Upload image: <button> Search computer </button>
+                    <button> Upload now </button> */}
         <input type="submit" />
              </form>
             </div>
         );
     };
 }
+
+<Link to="/createaccount" className="createButton">  
+Create Account
+</Link>
 
 export default SellStuff;
