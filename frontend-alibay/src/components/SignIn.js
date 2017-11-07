@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Link, Route } from 'react-router-dom'
 
 class SignIn extends Component {
     constructor(props) {
@@ -19,7 +20,9 @@ class SignIn extends Component {
                     </form>
                         <div className="createAccountOption">
                             <h4>No account?</h4>
-                            <button className="createButton">Create Account</button>
+                          <Link to="/createaccount" className="createButton">  
+                          Create Account
+                          </Link>
                         </div>
                 </div>
             </div>

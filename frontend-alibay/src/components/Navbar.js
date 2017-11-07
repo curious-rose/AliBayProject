@@ -9,7 +9,7 @@ class NavBar extends Component {
     render() {
         return (
             <div className="navBar">
-                <img className="logoImg" src= "../images/logo.png"/> onClick="handleImageClick"/>
+                <img className="logoImg" src= "../images/logo.png"/>
                 <input className="searchItems" placeholder="Search"/>
                 <div className="navButtonsSection">
                     <button className="navButton">My Account </button>

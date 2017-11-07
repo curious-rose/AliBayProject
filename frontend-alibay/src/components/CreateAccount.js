@@ -21,14 +21,10 @@ class CreateAccount extends Component {
                         <input className="passInputConfirm" placeholder="Password"/>
                         <button className="submitSignIn">Submit</button>
                     </form>
-                        <div className="createAccountOption">
-                            <h4>No account?</h4>
-                            <button className="createButton">Create Account</button>
-                        </div>
                 </div>
             </div>
         );
     };
 }
 
-export default SignIn;
+export default CreateAccount;
