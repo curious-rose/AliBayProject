@@ -13,47 +13,55 @@ let allItems = {} //global variable recording all items whether sold or bought
 
 
 /*
-initializeUserIfNeeded adds the UID to our global state unless it's already there
+initializeUserIfNeeded will register the user if they're not already in the registry of buyers, 
+and the same for the registry of sellers.
 parameter: [uid] the UID of the user.
 returns: undefined
 */
 function initializeUserIfNeeded(uid) {
-    // If the user is not in our global state, add him
     if (!(uid in itemsBought)) itemsBought[uid] = [];
     if (!(uid in itemsSold)) itemsSold[uid] = []
-    // There are many more things to do
 }
 
 /* 
-createListing adds a new listing to our global state. 
+createListing will add an item to the registry of items, and list it as for sale.
     parameters: 
       [sellerID] The ID of the seller
       [price] The price of the item
+      [title] the title of the item
       [blurb] A blurb describing the item
+      
     returns: the ID of the new listing
+
+    example: let listing1ID = createListing(43444, 249999, "Boat", "A very nice boat with a sail");
+    listing1ID === item_401400 or a similar-looking listing ID
 */
-// example: let listing1ID = createListing(03444, 500000, "A very nice boat");
 
 function createListing(sellerID, price, title, blurb) {
     //generates the "unique" listing ID which we'll use to track the item
+    let listingID = `item_${genUID()}`
+    //if it's taken, generates a new ID. Cause 1 in 100000000 chances do happen sometimes >:|
+    while (allItems[listingID]) {
         listingID = `item_${genUID()}`
-    // console.log("creating item listing at allItems[" + listingID + "]")
-    //plugs an object into allItemsForSale with the info of our listing
+
+    }
+    //puts an property into allItemsForSale, whose name is our item's listing ID
+    //and whose value is an object with our item's info
     allItems[listingID] = {
         sellerID,
         price,
         title,
-        blurb,        
+        blurb,
         forSale: true
     }
-    //then lets us know what the listingID is, so we can find our object again
+    //then returns the listingID, so we can find our object again
     return listingID;
 }
 
 /* 
 getItemDescription returns the description of a listing
     parameter: [listingID] The ID of the listing
-    returns: an object that contains the price and the blurb
+    returns: an object that contains the price, blurb and title
 */
 function getItemDescription(listingID) {
     //gets the object from allItems at the location of the listingID
@@ -62,7 +70,7 @@ function getItemDescription(listingID) {
     return {
         price: obj.price,
         blurb: obj.blurb,
-        title:obj.title
+        title: obj.title
     }
 }
 
@@ -70,8 +78,8 @@ function getItemDescription(listingID) {
 buy changes the global state.
 Another buyer will not be able to purchase that listing
 The listing will no longer appear in search results
-The buyer will see the listing in his history of purchases
-The seller will see the listing in his history of items sold
+The buyer will see the listing in their history of purchases
+The seller will see the listing in their history of items sold
     parameters: 
      [buyerID] The ID of buyer
      [sellerID] The ID of seller
@@ -82,7 +90,6 @@ function buy(buyerID, sellerID, listingID) {
     itemsSold[sellerID].push(listingID)
     itemsBought[buyerID].push(listingID)
     allItems[listingID].forSale = false;
-    // console.log(`${allItems[listingID].blurb} just got sold and now its forSale is ${allItems[listingID].forSale}`)
 }
 
 
@@ -111,11 +118,12 @@ Once an item is sold, it will not be returned by allListings
 */
 function allListings() {
     let results = []
+    //does a for-in loop(like forEach for an object), saying "for each property in this object, 
+    //check if its forSale value is true. if so, push it to the results".
     for (var ID in allItems) {
         let item = allItems[ID]
         if (item.forSale === true) {
             results.push(ID);
-            // console.log(item)
         }
     }
     return results;
@@ -141,11 +149,11 @@ function searchForListings(searchTerm) {
 
 
 // // The tests
-// let sellerID = genUID();
+let sellerID = genUID();
 // let buyerID = genUID();
-// initializeUserIfNeeded(sellerID);
+initializeUserIfNeeded(sellerID);
 // initializeUserIfNeeded(buyerID);
-// let listing1ID = createListing(sellerID, 500000,"Boat", "A very nice boat");
+let listing1ID = createListing(sellerID, 500000, "Boat", "A very nice boat");
 // let listing2ID = createListing(sellerID, 1000, "gloves","Faux fur gloves");
 // let listing3ID = createListing(sellerID, 100, "shoes","Running shoes");
 // let product2Description = getItemDescription(listing2ID);
@@ -175,7 +183,7 @@ function searchForListings(searchTerm) {
 // assert(boatBlurb == "A very nice boat");
 // assert(boatPrice == 500000);
 // console.log("nice all tests passed")
-module.exports={
+module.exports = {
     genUID,
     initializeUserIfNeeded,
     buy,
