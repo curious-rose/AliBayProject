@@ -5,13 +5,16 @@ class NavBar extends Component {
         super(props);
     }
 
+
     render() {
         return (
-            <div className="NavBar">
-                <input />
-             <button> My Account </button>
-             <button> Shop </button>
-             <button> Sign in/up </button>
+            <div className="navBar">
+                <img className="logoImg" src= "../images/logo.png"/> onClick="handleImageClick"/>
+                <input className="searchItems" placeholder="Search"/>
+                <div className="navButtonsSection">
+                    <button className="navButton">My Account </button>
+                    <button className="navButton">Sign in</button>
+                </div>
             </div>
         );
     };
