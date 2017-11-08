@@ -7,7 +7,7 @@ import SellStuff from './components/SellStuff'
 import SearchResults from './components/SearchResults'
 import ShopAll from './components/ShopAll'
 import SignIn from './components/SignIn'
-import NavBar from './components/NavBar.js'
+import NavBar from './components/Navbar'
 // import ItemPage from './components/ItemPage'
 import { BrowserRouter, Link, Route } from 'react-router-dom'
 
