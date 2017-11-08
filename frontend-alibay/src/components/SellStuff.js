@@ -11,10 +11,10 @@ class SellStuff extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        backendFunctions.createListing(this.priceInput.value,this.titleInput.value, this.blurbInput.value, 'grace.scharf@gmail.com');
-        console.log('all listings ', backendFunctions.allListings());
+        backendFunctions.createListing(
+        this.priceInput.value,this.titleInput.value, this.blurbInput.value, +localStorage.getItem('userID'));
+        // console.log('local storage ', localStorage.userID, '',localStorage.getItem('userID') );
         this.props.history.push('/accountpage')
-
     }
 
     render() {

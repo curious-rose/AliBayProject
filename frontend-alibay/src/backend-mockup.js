@@ -150,11 +150,11 @@ function searchForListings(searchTerm) {
 
 
 // // The tests
-let sellerID = 1000; genUID();
+let sellerID = genUID();
 // let buyerID = genUID();
 initializeUserIfNeeded(sellerID);
 // initializeUserIfNeeded(buyerID);
-let listing1ID = createListing(500, "Boat", "A very nice boat", sellerID, );
+let listing1ID = createListing(500, "Boat", "A very nice boat", sellerID);
 let listing2ID = createListing(1000, "gloves","Faux fur gloves", sellerID);
 let listing3ID = createListing(100, "shoes","Running shoes", sellerID);
 // let product2Description = getItemDescription(listing2ID);

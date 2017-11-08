@@ -7,9 +7,10 @@ import SellStuff from './components/SellStuff'
 import SearchResults from './components/SearchResults'
 import ShopAll from './components/ShopAll'
 import SignIn from './components/SignIn'
-import NavBar from './components/Navbar'
+import NavBar from './components/NavBar'
 // import ItemPage from './components/ItemPage'
 import { BrowserRouter, Link, Route } from 'react-router-dom'
+import backendFunctions from './backend-mockup.js'
 
 // const firebase = require('firebase');
 
@@ -34,30 +35,46 @@ import { BrowserRouter, Link, Route } from 'react-router-dom'
 
 class App extends Component {
   constructor() {
-    super()
-    this.state = {currentUser: null}
+    super();
+    //Hardcoding logged in user as id:1000
+    this.state = {currentUserId: null}
   }
 
   // uid should be user email
 
-    // handleSignIn = (event) => {
-    //   console.log('test');
-    //   if (this.state.currentUser === null) {
-    //       firebase.auth()
-    //       .signInWithPopup(provider)
-    //         .then(userData => {
-    //             this.setState({
-    //               currentUser: userData
-    //             })
-    //         })
-    //     } else { console.log('not working')}
-    // }  
+    handleSignIn = (event) => {
+      console.log('handleSignIn');
+      let userId = 1000;
+      localStorage.setItem('userID', userId);
+      backendFunctions.initializeUserIfNeeded(userId);
+      this.setState({
+        currentUserId: userId
+      })
+
+      // if (this.state.currentUser === null) {
+      //     firebase.auth()
+      //     .signInWithPopup(provider)
+      //       .then(userData => {
+      //           this.setState({
+      //             currentUser: userData
+      //           })
+      //       })
+      //   } else { console.log('not working')}
+    }  
+
+    handleSignOut = (event) => {
+      delete localStorage.userID;
+      this.setState({
+        currentUserId: null
+      })
+
+    }
 
   render() {
     return (
       <BrowserRouter>
       <div className="App">
-          <NavBar action={this.handleSignIn} />
+          <NavBar action={this.handleSignIn} reaction={this.handleSignOut}/>
             <div>
               <Route path="/landingpage" component={LandingPage} />
               <Route path="/createaccount" component={CreateAccount} />

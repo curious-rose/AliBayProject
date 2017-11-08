@@ -11,8 +11,13 @@ class ShopAll extends Component {
     componentDidMount() {
         let numbers = backendFunctions.allListings();
         this.setState({listingNumbers : numbers})
-        console.log('all listings ', backendFunctions.allListings())
+        // console.log('all listings ', backendFunctions.allListings())
     }
+
+    handleBuy = (event) => {
+    
+    }
+
 
     displayForSale = (listingID) => {
         let item = backendFunctions.getItemDescription(listingID);
@@ -22,7 +27,7 @@ class ShopAll extends Component {
                         <div> 
                             <h4>{item.title} - <span>{item.price}</span></h4>
                             <p>{item.blurb}</p>
-                            
+                            <button onClick={this.handleBuy}>Buy now</button>
                         </div>    
                     </li>
                 )

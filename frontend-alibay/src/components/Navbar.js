@@ -7,9 +7,6 @@ class NavBar extends Component {
         super(props);
     }
 
-   
-
-
     render() {
         return (
             <div className="navBar">
@@ -18,11 +15,18 @@ class NavBar extends Component {
                 </Link>
                 <input className="navSearchInput" placeholder="Search"/>
                 <div className="navButtonsSection">
-                    <Link to="/accountpage/" className="navButton">My Account </Link>
-                     {/* this button will trigger google authentication , 
-                    so instead of it being in component did mount it will be triggered here, 
-                    but probably in the app.js page*/}
-                    <button className="navButton" onClick={this.props.action}>Sign in</button>
+                    {
+                        (localStorage.getItem('userID')) && 
+                        <Link to="/accountpage/" className="navButton">My Account </Link>
+
+                    }
+                    
+                    { 
+                        (!localStorage.getItem('userID')) ?
+                        <button className="navButton" onClick={this.props.action}>Sign in</button> :
+                        <button className="navButton" onClick={this.props.reaction}>Sign out</button>
+                    }
+                    
                    
                 </div>
             </div>
