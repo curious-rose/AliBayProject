@@ -15,9 +15,9 @@ import { BrowserRouter, Link, Route } from 'react-router-dom'
 class App extends Component {
   render() {
     return (
+      <BrowserRouter>
       <div className="App">
           <NavBar/>
-          <BrowserRouter>
             <div>
               <Route path="/" component={LandingPage} />
               <Route path="/createaccount" component={CreateAccount} />
@@ -27,10 +27,8 @@ class App extends Component {
               <Route path="/accountpage" component={AccountPage} />
               <Route path="/shopall" component={ShopAll} />
             </div>
-          </BrowserRouter>
-          
-
       </div>
+      </BrowserRouter>
     );
   }
 }
