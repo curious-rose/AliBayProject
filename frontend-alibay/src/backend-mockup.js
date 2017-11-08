@@ -3,7 +3,7 @@ const assert = require('assert');
 // const backEndMockup = require("backendMockUp.js")
 
 
-function genUID() {
+export function genUID() {
     return Math.floor(Math.random() * 100000000)
 }
 
@@ -18,7 +18,7 @@ and the same for the registry of sellers.
 parameter: [uid] the UID of the user.
 returns: undefined
 */
-function initializeUserIfNeeded(uid) {
+export function initializeUserIfNeeded(uid) {
     if (!(uid in itemsBought)) itemsBought[uid] = [];
     if (!(uid in itemsSold)) itemsSold[uid] = []
 }
@@ -37,7 +37,7 @@ createListing will add an item to the registry of items, and list it as for sale
     listing1ID === item_401400 or a similar-looking listing ID
 */
 
-function createListing(sellerID, price, title, blurb) {
+export function createListing(sellerID, price, title, blurb) {
     //generates the "unique" listing ID which we'll use to track the item
     let listingID = `item_${genUID()}`
     //if it's taken, generates a new ID. Cause 1 in 100000000 chances do happen sometimes >:|
@@ -63,7 +63,7 @@ getItemDescription returns the description of a listing
     parameter: [listingID] The ID of the listing
     returns: an object that contains the price, blurb and title
 */
-function getItemDescription(listingID) {
+export function getItemDescription(listingID) {
     //gets the object from allItems at the location of the listingID
     let obj = allItems[listingID]
     //returns a new object, same as previous object but without sellerID or forSale
@@ -86,7 +86,7 @@ The seller will see the listing in their history of items sold
      [listingID] The ID of listing
     returns: undefined
 */
-function buy(buyerID, sellerID, listingID) {
+export function buy(buyerID, sellerID, listingID) {
     itemsSold[sellerID].push(listingID)
     itemsBought[buyerID].push(listingID)
     allItems[listingID].forSale = false;
@@ -98,7 +98,7 @@ allItemsSold returns the IDs of all the items sold by a seller
     parameter: [sellerID] The ID of the seller
     returns: an array of listing IDs
 */
-function allItemsSold(sellerID) {
+export function allItemsSold(sellerID) {
     return itemsSold[sellerID]
 }
 
@@ -107,7 +107,7 @@ allItemsBought returns the IDs of all the items bought by a buyer
     parameter: [buyerID] The ID of the buyer
     returns: an array of listing IDs
 */
-function allItemsBought(buyerID) {
+export function allItemsBought(buyerID) {
     return itemsBought[buyerID]
 }
 
@@ -116,7 +116,7 @@ allListings returns the IDs of all the listings currently on the market
 Once an item is sold, it will not be returned by allListings
     returns: an array of listing IDs
 */
-function allListings() {
+export function allListings() {
     let results = []
     //does a for-in loop(like forEach for an object), saying "for each property in this object, 
     //check if its forSale value is true. if so, push it to the results".
@@ -135,7 +135,7 @@ Once an item is sold, it will not be returned by searchForListings
     parameter: [searchTerm] The search string matching listing descriptions
     returns: an array of listing IDs
 */
-function searchForListings(searchTerm) {
+export function searchForListings(searchTerm) {
     let results = []
     allListings().forEach(ID => {
         let item = getItemDescription(ID)
@@ -183,7 +183,7 @@ let listing1ID = createListing(sellerID, 500000, "Boat", "A very nice boat");
 // assert(boatBlurb == "A very nice boat");
 // assert(boatPrice == 500000);
 // console.log("nice all tests passed")
-module.exports = {
+const backendFunctions = {
     genUID,
     initializeUserIfNeeded,
     buy,
@@ -194,3 +194,5 @@ module.exports = {
     searchForListings,
     getItemDescription
 }
+
+export default backendFunctions;
