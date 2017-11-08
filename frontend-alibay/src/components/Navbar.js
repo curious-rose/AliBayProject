@@ -7,6 +7,8 @@ class NavBar extends Component {
         super(props);
     }
 
+   
+
 
     render() {
         return (
@@ -20,7 +22,7 @@ class NavBar extends Component {
                      {/* this button will trigger google authentication , 
                     so instead of it being in component did mount it will be triggered here, 
                     but probably in the app.js page*/}
-                    <button className="navButton">Sign in</button>
+                    <button className="navButton" onClick={this.props.action}>Sign in</button>
                    
                 </div>
             </div>
