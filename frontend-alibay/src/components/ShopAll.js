@@ -7,8 +7,15 @@ class ShopAll extends Component {
 
     render() {
         return (
-            <div className="ShopAll">
-                <p></p>
+            <div className="shopAll">
+              <h1 className="title">Things to buy </h1>
+               <div className="results">
+                <ul>
+                 <li>1</li>   
+                 <li>2</li>   
+                 <li>3</li>   
+                </ul>
+               </div>
             </div>
         );
     };

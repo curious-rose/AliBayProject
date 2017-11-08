@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Link, Route } from 'react-router-dom';
 
 class AccountPage extends Component {
     constructor(props) {
         super(props);
     }
 
+    
     render() {
         return (
             <div className="AccountPage">
                 <h1>Your Account. Welcome username </h1>
-                <button className="shopButton" onClick="handleButtonClick">Shop now! </button>
-                <button className="sellSomething" onClick="handleButtonClick">Sell something!</button>
+                <Link to="/shopall" className="shopButton"><button>Shop now!</button></Link>
+                <Link to="/sellstuff" className="sellSomething"><button>Sell Something!</button></Link>
                 <div className="accountAction">
                     <div className="ItemsPurchased">
                         <h2>Items Purchased</h2>
