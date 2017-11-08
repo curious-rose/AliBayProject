@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Link, Route } from 'react-router-dom';
 
 class SellStuff extends Component {
     constructor(props) {
@@ -24,15 +25,12 @@ class SellStuff extends Component {
                     </label>
                     {/* Upload image: <button> Search computer </button>
                     <button> Upload now </button> */}
-        <input type="submit" />
+        <Link to="/accountpage"> <button>Submit</button> </Link>
              </form>
             </div>
         );
     };
 }
 
-<Link to="/createaccount" className="createButton">  
-Create Account
-</Link>
 
 export default SellStuff;
