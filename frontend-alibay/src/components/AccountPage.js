@@ -10,23 +10,25 @@ class AccountPage extends Component {
     }
 
     componentDidMount() {
-        let numbers = backendFunctions.allListings();
+        let numbers = backendFunctions.allListings(1000);
         this.setState({listingNumbers : numbers})
         console.log('all listings ', backendFunctions.allListings())
     }
 
     displayForSale = (listingID) => {
     let item = backendFunctions.getItemDescription(listingID);
-        return (
-            <li>
-                <div> 
-                    <h4>{item.title} - <span>{item.price}</span></h4>
-                    <p>{item.blurb}</p>
-               
-                </div>
-            
-            </li>
-        )
+        if (item.forSale) {
+            return (
+                <li>
+                    <div> 
+                        <h4>{item.title} - <span>{item.price}</span></h4>
+                        <p>{item.blurb}</p>
+                        
+                    </div>    
+                </li>
+            )
+        }
+        
 
     }
 
