@@ -65,13 +65,11 @@ getItemDescription returns the description of a listing
 */
 function getItemDescription(listingID) {
     //gets the object from allItems at the location of the listingID
-    let obj = allItems[listingID]
+   
     //returns a new object, same as previous object but without sellerID or forSale
-    return {
-        price: obj.price,
-        blurb: obj.blurb,
-        title: obj.title
-    }
+    return  allItems[listingID]
+        
+    
 }
 
 /* 
@@ -116,14 +114,17 @@ allListings returns the IDs of all the listings currently on the market
 Once an item is sold, it will not be returned by allListings
     returns: an array of listing IDs
 */
-function allListings() {
+function allListings(userId) {
     let results = []
     //does a for-in loop(like forEach for an object), saying "for each property in this object, 
     //check if its forSale value is true. if so, push it to the results".
     for (var ID in allItems) {
         let item = allItems[ID]
+        console.log('item: ', item)
         if (item.forSale === true) {
-            results.push(ID);
+            if(userId === undefined || userId === item.sellerID){
+                results.push(ID);                
+            }
         }
     }
     return results;
@@ -149,13 +150,13 @@ function searchForListings(searchTerm) {
 
 
 // // The tests
-let sellerID = genUID();
+let sellerID = 1000; genUID();
 // let buyerID = genUID();
 initializeUserIfNeeded(sellerID);
 // initializeUserIfNeeded(buyerID);
-let listing1ID = createListing(sellerID, 500000, "Boat", "A very nice boat");
-// let listing2ID = createListing(sellerID, 1000, "gloves","Faux fur gloves");
-// let listing3ID = createListing(sellerID, 100, "shoes","Running shoes");
+let listing1ID = createListing(500, "Boat", "A very nice boat", sellerID, );
+let listing2ID = createListing(1000, "gloves","Faux fur gloves", sellerID);
+let listing3ID = createListing(100, "shoes","Running shoes", sellerID);
 // let product2Description = getItemDescription(listing2ID);
 
 // buy(buyerID, sellerID, listing2ID);
