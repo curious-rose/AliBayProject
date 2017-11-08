@@ -5,10 +5,33 @@ import backendFunctions from '../backend-mockup.js';
 class AccountPage extends Component {
     constructor(props) {
         super(props);
+        this.state = {listingNumbers: []}
+    }
+
+    componentDidMount() {
+        let numbers = backendFunctions.allListings();
+        this.setState({listingNumbers : numbers})
+        console.log('all listings ', backendFunctions.allListings())
+    }
+
+    displayForSale = (listingID) => {
+    let item = backendFunctions.getItemDescription(listingID);
+        return (
+            <li>
+                <div> 
+                    <h4>{item.title} - <span>{item.price}</span></h4>
+                    <p>{item.blurb}</p>
+                    
+                </div>
+            
+            </li>
+        )
+
     }
 
     
     render() {
+        console.log('this.state ', this.state);
         return (
             <div className="AccountPage">
                 <h1>Your Account. Welcome username </h1>
@@ -30,7 +53,7 @@ class AccountPage extends Component {
                     <div className="ItemsForSale">
                         <h2>Items for Sale</h2>
                         <ul>
-                            <li>test1</li>
+                            {this.state.listingNumbers.map(this.displayForSale)}
                         </ul>
                     </div>
                 </div>
