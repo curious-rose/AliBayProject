@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
+import backendFunctions from '../backend-mockup.js';
 
 class AccountPage extends Component {
     constructor(props) {
