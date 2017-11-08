@@ -19,7 +19,7 @@ class App extends Component {
       <div className="App">
           <NavBar/>
             <div>
-              <Route path="/" component={LandingPage} />
+              <Route path="/landingpage" component={LandingPage} />
               <Route path="/createaccount" component={CreateAccount} />
               <Route path="/signin" component={SignIn} />
               <Route path="/sellstuff" component={SellStuff} />

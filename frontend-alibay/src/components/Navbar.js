@@ -11,10 +11,10 @@ class NavBar extends Component {
     render() {
         return (
             <div className="navBar">
-                <Link to="/shopall/">
+                <Link  to="/shopall/">
                     <img className="imgLogo" src={logoImage} />
                 </Link>
-                <input className="searchItems" placeholder="Search"/>
+                <input className="navSearchInput" placeholder="Search"/>
                 <div className="navButtonsSection">
                     <Link to="/accountpage/" className="navButton">My Account </Link>
                      {/* this button will trigger google authentication , 

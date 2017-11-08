@@ -7,21 +7,22 @@ class SellStuff extends Component {
 
     render() {
         return (
-            <div className="SellStuff">
+            <div className="sellStuff">
                 <h1>Sell items</h1>
                 <form >
-                    <label>
-                        Item Title:
-          <input type="text" />
-                    </label>
-                    <label>
-                        Price:
-          <input type="text" />
-                    </label>
-                    <label>
-                        Description:
-          <input type="text" />
-                    </label>
+                    <div>
+                        <p> Item Title:</p>
+                        <input type="text"/>
+                    </div>
+                    <div>
+                        <p> Price:</p>
+                        <input type="text"/>
+                    </div>
+                    <div>
+                        <p> Description:</p>
+                        <input type="text"/>
+                    </div>
+                    
                     {/* Upload image: <button> Search computer </button>
                     <button> Upload now </button> */}
         <input type="submit" />
@@ -31,8 +32,5 @@ class SellStuff extends Component {
     };
 }
 
-<Link to="/createaccount" className="createButton">  
-Create Account
-</Link>
 
 export default SellStuff;
