@@ -26,3 +26,19 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+/* nav bar */
+.navBar {
+  display: flex;
+} 
+.navSearchInput {
+  height: 20px;
+  width: 300px;
+}
+
+.imgLogo {
+  height: 72px;
+  width: 200px;
+
+}
