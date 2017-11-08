@@ -9,14 +9,13 @@ class AccountPage extends Component {
     }
 
     componentDidMount() {
+        // todo: put in actual userID parameter
         let numbers = backendFunctions.allListings(1000);
         this.setState({listingNumbers : numbers})
-        console.log('all listings ', backendFunctions.allListings())
     }
 
     displayForSale = (listingID) => {
     let item = backendFunctions.getItemDescription(listingID);
-        if (item.forSale) {
             return (
                 <li>
                     <div> 
@@ -27,14 +26,10 @@ class AccountPage extends Component {
                 
                 </li>
             )
-        }
-        
-
     }
 
     
     render() {
-        console.log('this.state ', this.state);
         return (
             <div className="AccountPage">
                 <h1>Your Account. Welcome username </h1>
