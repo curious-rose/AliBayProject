@@ -39,7 +39,7 @@ createListing will add an item to the registry of items, and list it as for sale
     listing1ID === item_401400 or a similar-looking listing ID
 */
 
-function createListing(sellerID, price, title, blurb) {
+function createListing(price, title, blurb, sellerID) {
     //generates the "unique" listing ID which we'll use to track the item
     let listingID = `item_${genUID()}`
     // //if it's taken, generates a new ID. Cause 1 in 100000000 chances do happen sometimes >:|
@@ -50,10 +50,10 @@ function createListing(sellerID, price, title, blurb) {
     //puts an property into allItemsForSale, whose name is our item's listing ID
     //and whose value is an object with our item's info
     allItems[listingID] = {
-        sellerID,
         price,
         title,
         blurb,
+        sellerID,
         forSale: true
     }
     //adds it to the items Selling array as a listing ID
@@ -70,8 +70,10 @@ getItemDescription returns the description of a listing
 */
 function getItemDescription(listingID) {
     //gets the object from allItems at the location of the listingID
-    return allItems[listingID]
-    //returns a new object, same as previous object but without sellerID or forSale
+   
+    return  allItems[listingID]
+        
+    
 }
 
 /* 
@@ -136,14 +138,17 @@ allListings returns the IDs of all the listings currently on the market
 Once an item is sold, it will not be returned by allListings
     returns: an array of listing IDs
 */
-function allListings() {
+function allListings(userId) {
     let results = []
     //does a for-in loop(like forEach for an object), saying "for each property in this object, 
     //check if its forSale value is true. if so, push it to the results".
     for (var ID in allItems) {
         let item = allItems[ID]
+        console.log('item: ', item)
         if (item.forSale === true) {
-            results.push(ID);
+            if(userId === undefined || userId === item.sellerID){
+                results.push(ID);                
+            }
         }
     }
     return results;
@@ -205,7 +210,7 @@ let allSelling = allItemsSelling(sellerID)
 // assert(boatBlurb == "A very nice boat");
 // assert(boatPrice == 500000);
 // console.log("nice all tests passed")
-module.exports = {
+const backendFunctions = {
     genUID,
     initializeUserIfNeeded,
     buy,
@@ -216,3 +221,5 @@ module.exports = {
     searchForListings,
     getItemDescription
 }
+
+export default backendFunctions;
