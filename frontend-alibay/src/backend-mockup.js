@@ -178,9 +178,9 @@ let sellerID = genUID();
 let buyerID = genUID();
 initializeUserIfNeeded(sellerID);
 initializeUserIfNeeded(buyerID);
-let listing1ID = createListing(sellerID, 500000, "Boat", "A very nice boat");
-let listing2ID = createListing(sellerID, 1000, "gloves", "Faux fur gloves");
-let listing3ID = createListing(sellerID, 100, "shoes", "Running shoes");
+let listing1ID = createListing( 500000, "Boat", "A very nice boat", sellerID,);
+let listing2ID = createListing(1000, "gloves", "Faux fur gloves", sellerID);
+let listing3ID = createListing(100, "shoes", "Running shoes", sellerID,);
 let product2Description = getItemDescription(listing2ID);
 
 buy(buyerID, sellerID, listing2ID);
