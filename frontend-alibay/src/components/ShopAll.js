@@ -15,7 +15,9 @@ class ShopAll extends Component {
     }
 
     handleBuy = (event) => {
-    
+       // backendFunctions.buy()
+       
+       console.log('state listing Numbers ', this.state.listingNumbers  )
     }
 
 
