@@ -6,26 +6,45 @@ import backendFunctions from '../backend-mockup.js'
 class AccountPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {listingNumbers: []}
+        this.state = {
+            itemsBought: [],
+            itemsSold: [],
+            itemsForSale: [],
+
+        }
     }
 
     componentDidMount() {
         // todo: put in actual userID parameter
-        let numbers = backendFunctions.allListings(1000);
-        this.setState({listingNumbers : numbers})
+        let boughtIds = backendFunctions.allItemsBought(1000);
+        let soldIds = backendFunctions.allItemsSold(1000);
+        let forSaleIds = backendFunctions.allListings(1000);
+        // let itemsBought = []
+        // if (boughtIds) {
+        //     itemsBought = boughtIds.map(backendFunctions.getItemDescription)
+        // }
+        // console.log('items bought ', itemsBought)
+        this.setState({
+
+            itemsBought: boughtIds,
+            itemsSold: soldIds,
+            itemsForSale: forSaleIds,
+        })
+
     }
 
-    displayForSale = (listingID) => {
-    let item = backendFunctions.getItemDescription(listingID);
-            return (
-                <li>
-                    <div> 
-                        <h4>{item.title} - <span>{item.price}</span></h4>
-                        <p>{item.blurb}</p>
-                        
-                    </div>    
-                </li>
-            )
+
+    displayItems = (listingID) => {
+        let item = backendFunctions.getItemDescription(listingID);
+        return (
+            <li>
+                <div>
+                    <h4>{item.title} - <span>{item.price}</span></h4>
+                    <p>{item.blurb}</p>
+
+                </div>
+            </li>
+        )
     }
 
     render() {
@@ -37,20 +56,30 @@ class AccountPage extends Component {
                 <div className="accountAction">
                     <div className="ItemsPurchased">
                         <h2>Items Purchased</h2>
-                        <ul>
-                        </ul>
+                        {this.state.itemsBought ?
+                            (<ul>
+                                {this.state.itemsBought.map(this.displayItems)}
+                            </ul>) :
+                            (<p>You haven't bought anything yet.</p>)
+                        }
                     </div>
                     <div className="ItemsSold">
                         <h2>Items Sold</h2>
-                        <ul>
-                            <li>test1</li>
-                        </ul>
+                        {this.state.itemsSold ?
+                            (<ul>
+                                {this.state.itemsSold.map(this.displayItems)}
+                            </ul>) :
+                            (<p>You haven't sold anything yet.</p>)
+                        }
                     </div>
                     <div className="ItemsForSale">
                         <h2>Items for Sale</h2>
-                        <ul>
-                            {this.state.listingNumbers.map(this.displayForSale)}
-                        </ul>
+                        {this.state.itemsSold ?
+                            (<ul>
+                                {this.state.itemsForSale.map(this.displayItems)}
+                            </ul>) :
+                            (<p>You don't have anything for sale.</p>)
+                        }
                     </div>
                 </div>
             </div>

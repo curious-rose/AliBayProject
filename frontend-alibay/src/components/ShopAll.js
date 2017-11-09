@@ -20,12 +20,6 @@ class ShopAll extends Component {
         // console.log('all listings ', itemDescription)
     }
 
-<<<<<<< HEAD
-    handleBuy = (event) => {
-       // backendFunctions.buy()
-       
-       console.log('state listing Numbers ', this.state.listingNumbers  )
-=======
     handleBuy = (item, listingID) => {
         try {
             backendFunctions.buy(localStorage.getItem('userID'), item.sellerID, listingID)
@@ -34,9 +28,8 @@ class ShopAll extends Component {
             console.log('please sign in ', error)
         }
         
-        console.log(localStorage.getItem('userID'), item.sellerID, listingID)
+    
 
->>>>>>> 1fe794abcc43dec5500bcb50f18cfb473d54f58e
     }
 
 

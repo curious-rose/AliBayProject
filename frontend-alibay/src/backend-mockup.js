@@ -193,7 +193,8 @@ const backendFunctions = {
     allItemsSold,
     allListings,
     searchForListings,
-    getItemDescription
+    getItemDescription,
+    itemsBought
 }
 
 export default backendFunctions;
