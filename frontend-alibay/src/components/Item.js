@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class Item extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.item.forSale = false;
-        console.log('listing', this.props.item)
         this.props.handleBuy(this.props.item, this.props.item.listingID);
         this.forceUpdate();
         // todo - unclear if forceUpdate() is a good idea 

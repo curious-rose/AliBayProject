@@ -13,12 +13,11 @@ class NavBar extends Component {
                 <Link  to="/shopall/">
                     <img className="imgLogo" src={logoImage} />
                 </Link>
-                <input className="navSearchInput" placeholder="Search"/>
+                <input className="navSearchInput" onChange={(event)=>(this.props.updateSearchTerm(event.target.value))} placeholder="Search"/>
                 <div className="navButtonsSection">
                     {
                         (localStorage.getItem('userID')) && 
                         <Link to="/accountpage/" className="navButton">My Account </Link>
-
                     }
                     
                     { 

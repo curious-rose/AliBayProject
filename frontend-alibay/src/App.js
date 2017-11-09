@@ -38,7 +38,10 @@ class App extends Component {
   constructor() {
     super();
     //Hardcoding logged in user as id:1000
-    this.state = {currentUserId: null}
+    this.state = {
+      currentUserId: null,
+      searchTerm: ''             
+    }
   }
 
   // uid should be user email
@@ -82,7 +85,7 @@ class App extends Component {
     return (
       <BrowserRouter>
       <div className="App">
-          <NavBar action={this.handleSignIn} reaction={this.handleSignOut}/>
+          <NavBar action={this.handleSignIn} updateSearchTerm={(searchTerm)=>(this.setState({searchTerm})) }reaction={this.handleSignOut}/>
             <div>
               <Route path="/landingpage" component={LandingPage} />
               <Route path="/createaccount" component={CreateAccount} />
@@ -90,7 +93,7 @@ class App extends Component {
               <Route path="/sellstuff" component={SellStuff} />
               <Route path="/searchresults" component={SearchResults} />
               <Route path="/accountpage" component={AccountPage} />
-              <Route path="/shopall" component={ShopAll} />
+              <Route path="/shopall" render={()=>(<ShopAll searchTerm={this.state.searchTerm}/>) } />
             </div>
       </div>
       </BrowserRouter>

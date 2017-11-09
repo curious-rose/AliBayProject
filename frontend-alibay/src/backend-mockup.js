@@ -144,7 +144,7 @@ function allListings(userId) {
     //check if its forSale value is true. if so, push it to the results".
     for (var ID in allItems) {
         let item = allItems[ID]
-        console.log('item: ', item)
+        // console.log('item: ', item)
         if (item.forSale === true) {
             if(userId === undefined || userId === item.sellerID){
                 results.push(ID);                
