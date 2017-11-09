@@ -15,8 +15,6 @@ import backendFunctions from './backend-mockup.js'
 
 // const firebase = require('firebase');
 
-
-
   // Initialize Firebase
   // var config = {
   //   apiKey: "AIzaSyB3i40mpq5TEh0Hsn5WeahXGCumZZ6yfRE",
@@ -38,7 +36,8 @@ class App extends Component {
   constructor() {
     super();
     //Hardcoding logged in user as id:1000
-    this.state = {currentUserId: null}
+    this.state = {currentUserId: null
+                    }
   }
 
   // uid should be user email
