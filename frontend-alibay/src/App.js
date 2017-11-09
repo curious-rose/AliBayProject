@@ -9,7 +9,7 @@ import ShopAll from './components/ShopAll'
 import SignIn from './components/SignIn'
 import NavBar from './components/NavBar'
 // import ItemPage from './components/ItemPage'
-import { BrowserRouter, Link, Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import backendFunctions from './backend-mockup.js'
 
 

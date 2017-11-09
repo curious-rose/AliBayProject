@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import logoImage from '../images/logo.png';
 
 class NavBar extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (

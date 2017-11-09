@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
 import backendFunctions from '../backend-mockup.js'
 import Item from './Item';
+
 class ShopAll extends Component {
     constructor(props) {
         super(props);
