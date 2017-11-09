@@ -12,6 +12,7 @@ import NavBar from './components/NavBar'
 import { BrowserRouter, Link, Route } from 'react-router-dom'
 import backendFunctions from './backend-mockup.js'
 
+
 // const firebase = require('firebase');
 
 
@@ -41,6 +42,13 @@ class App extends Component {
   }
 
   // uid should be user email
+  // todo: remove hardcoded userID
+  componentDidMount() {
+    let userId = 1000;
+    localStorage.getItem('userID') ? 
+    backendFunctions.initializeUserIfNeeded(userId) :
+    null;
+  }
 
     handleSignIn = (event) => {
       console.log('handleSignIn');
