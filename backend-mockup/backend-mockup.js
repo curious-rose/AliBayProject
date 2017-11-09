@@ -10,7 +10,7 @@ function genUID() {
 let itemsBought = {} // global variable recording all users' bought items as listing ID numbers
 let itemsSold = {} //same for sold items
 let allItems = {} //global variable recording all items whether sold or bought
-
+let itemsSelling = {} //records items that all users are currently selling, as ID numbers
 
 /*
 initializeUserIfNeeded will register the user if they're not already in the registry of buyers, 
@@ -21,6 +21,8 @@ returns: undefined
 function initializeUserIfNeeded(uid) {
     if (!(uid in itemsBought)) itemsBought[uid] = [];
     if (!(uid in itemsSold)) itemsSold[uid] = []
+    if (!(uid in itemsSelling)) itemsSelling[uid] = []
+
 }
 
 /* 
@@ -40,11 +42,11 @@ createListing will add an item to the registry of items, and list it as for sale
 function createListing(sellerID, price, title, blurb) {
     //generates the "unique" listing ID which we'll use to track the item
     let listingID = `item_${genUID()}`
-    //if it's taken, generates a new ID. Cause 1 in 100000000 chances do happen sometimes >:|
-    while (allItems[listingID]) {
-        listingID = `item_${genUID()}`
+    // //if it's taken, generates a new ID. Cause 1 in 100000000 chances do happen sometimes >:|
+    // while (allItems[listingID]) {
+    //     listingID = `item_${genUID()}`
 
-    }
+    // }
     //puts an property into allItemsForSale, whose name is our item's listing ID
     //and whose value is an object with our item's info
     allItems[listingID] = {
@@ -54,6 +56,9 @@ function createListing(sellerID, price, title, blurb) {
         blurb,
         forSale: true
     }
+    //adds it to the items Selling array as a listing ID
+    itemsSelling[sellerID][listingID] = true
+
     //then returns the listingID, so we can find our object again
     return listingID;
 }
@@ -65,13 +70,8 @@ getItemDescription returns the description of a listing
 */
 function getItemDescription(listingID) {
     //gets the object from allItems at the location of the listingID
-    let obj = allItems[listingID]
+    return allItems[listingID]
     //returns a new object, same as previous object but without sellerID or forSale
-    return {
-        price: obj.price,
-        blurb: obj.blurb,
-        title: obj.title
-    }
 }
 
 /* 
@@ -90,14 +90,34 @@ function buy(buyerID, sellerID, listingID) {
     itemsSold[sellerID].push(listingID)
     itemsBought[buyerID].push(listingID)
     allItems[listingID].forSale = false;
+    itemsSelling[sellerID][listingID] = false;
 }
 
 
 /* 
-allItemsSold returns the IDs of all the items sold by a seller
+allItemsSelling returns the IDs of all the items currently being sold by a seller
     parameter: [sellerID] The ID of the seller
     returns: an array of listing IDs
 */
+
+function allItemsSelling(sellerID) {
+    let results = []
+    //does a for-in loop(like forEach for an object), saying "for each property in this object, 
+    //check if its value is true. if so, push it to the results".
+    for (var ID in itemsSelling[sellerID]) {
+        if (itemsSelling[sellerID][ID] === true) {
+            results.push(ID);
+        }
+        return results;
+    }
+}
+
+/* 
+allItemsSold returns the IDs of all the items already sold by a seller
+    parameter: [sellerID] The ID of the seller
+    returns: an array of listing IDs
+*/
+
 function allItemsSold(sellerID) {
     return itemsSold[sellerID]
 }
@@ -139,7 +159,7 @@ function searchForListings(searchTerm) {
     let results = []
     allListings().forEach(ID => {
         let item = getItemDescription(ID)
-        if (item.blurb.search(searchTerm) >= 0) {
+        if (item.blurb.search(searchTerm) >= 0 || item.title.search(searchTerm) >= 0) {
             results.push(ID)
         }
     })
@@ -150,22 +170,24 @@ function searchForListings(searchTerm) {
 
 // // The tests
 let sellerID = genUID();
-// let buyerID = genUID();
+let buyerID = genUID();
 initializeUserIfNeeded(sellerID);
-// initializeUserIfNeeded(buyerID);
+initializeUserIfNeeded(buyerID);
 let listing1ID = createListing(sellerID, 500000, "Boat", "A very nice boat");
-// let listing2ID = createListing(sellerID, 1000, "gloves","Faux fur gloves");
-// let listing3ID = createListing(sellerID, 100, "shoes","Running shoes");
-// let product2Description = getItemDescription(listing2ID);
+let listing2ID = createListing(sellerID, 1000, "gloves", "Faux fur gloves");
+let listing3ID = createListing(sellerID, 100, "shoes", "Running shoes");
+let product2Description = getItemDescription(listing2ID);
 
-// buy(buyerID, sellerID, listing2ID);
-// buy(buyerID, sellerID, listing3ID);
+buy(buyerID, sellerID, listing2ID);
+buy(buyerID, sellerID, listing3ID);
 
-// let allSold = allItemsSold(sellerID);
-// let soldDescriptions = allSold.map(getItemDescription);
+let allSold = allItemsSold(sellerID);
+let soldDescriptions = allSold.map(getItemDescription);
 
-// let allBought = allItemsBought(buyerID);
-// let allBoughtDescriptions = allBought.map(getItemDescription)
+let allBought = allItemsBought(buyerID);
+let allBoughtDescriptions = allBought.map(getItemDescription)
+let allSelling = allItemsSelling(sellerID)
+
 
 // let listings = allListings();
 // let boatListings = searchForListings("boat");
