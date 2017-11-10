@@ -113,7 +113,7 @@ function allItemsBought(buyerID) {
     console.log(buyerID);
     return itemsBoughtRef.child(`${buyerID}`).once("value")
         .then(d => d.val())
-        .then(val => Object.keys(val))
+        .then(val =>val ? Object.keys(val):[])
 }
 
 /*
