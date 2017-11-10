@@ -1,0 +1,6 @@
+
+#this is my development folder with firebase-admin and all kinds of cool things that frontend geeks
+#don't get to know about :D the production version of my backend-alibay.js will be in frontend-alibay
+#for some obscure reason relating to where React can import from.
+
+backend-alibay/

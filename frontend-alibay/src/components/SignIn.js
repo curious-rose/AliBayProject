@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class SignIn extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-
     render() {
         return (
             <div className="signIn">

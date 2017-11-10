@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
-import backendFunctions from '../backend-mockup.js'
+import { Link } from 'react-router-dom';
+import backendFunctions from '../backend-firebase.js'
 
 
 class AccountPage extends Component {
@@ -10,37 +10,33 @@ class AccountPage extends Component {
             itemsBought: [],
             itemsSold: [],
             itemsForSale: [],
+            item: {},
 
         }
     }
 
     componentDidMount() {
         // todo: put in actual userID parameter
-        let boughtIds = backendFunctions.allItemsBought(1000);
-        let soldIds = backendFunctions.allItemsSold(1000);
-        let forSaleIds = backendFunctions.allListings(1000);
+        backendFunctions.allItemsBought(this.props.userUID).then(itemsBought => this.setState({ itemsBought }));
+        backendFunctions.allItemsSold(this.props.userUID).then(itemsSold => this.setState({ itemsSold }));
+        backendFunctions.allListings(this.props.userUID).then(itemsForSale => this.setState({ itemsForSale }))
         // let itemsBought = []
         // if (boughtIds) {
         //     itemsBought = boughtIds.map(backendFunctions.getItemDescription)
         // }
         // console.log('items bought ', itemsBought)
-        this.setState({
-
-            itemsBought: boughtIds,
-            itemsSold: soldIds,
-            itemsForSale: forSaleIds,
-        })
+        // 
 
     }
 
 
     displayItems = (listingID) => {
-        let item = backendFunctions.getItemDescription(listingID);
+        backendFunctions.getItemDescription(listingID).then(item => this.setState({ item }))
         return (
             <li>
                 <div>
-                    <h4>{item.title} - <span>{item.price}</span></h4>
-                    <p>{item.blurb}</p>
+                    <h4>{this.state.item.title} - <span>{this.state.item.price}</span></h4>
+                    <p>{this.state.item.blurb}</p>
 
                 </div>
             </li>

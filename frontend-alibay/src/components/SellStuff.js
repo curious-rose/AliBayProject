@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
-import backendFunctions from '../backend-mockup.js'
+import backendFunctions from '../backend-firebase.js'
 
 class SellStuff extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     // createListing( price, title, blurb, sellerID,)
 
     handleSubmit = (event) => {
