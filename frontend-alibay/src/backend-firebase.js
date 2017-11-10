@@ -248,7 +248,7 @@ async function test() {
     console.log("all tests passed")
 }
 //uncomment this next line to run Jacques' async tests
-test().catch(err => console.log(err))
+// test().catch(err => console.log(err))
 
 const backendFunctions = {
     genUID,
@@ -261,4 +261,4 @@ const backendFunctions = {
     getItemDescription
 }
 
-// export default backendFunctions;
+export default backendFunctions;
