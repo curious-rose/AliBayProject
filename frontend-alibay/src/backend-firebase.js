@@ -102,6 +102,7 @@ function allItemsSold(sellerID) {
     return itemsSoldRef.child(`${sellerID}`).once("value")
         .then(d => d.val())
         .then(val => Object.keys(val))
+        .then(val => val ? Object.keys(val) : [])
 }
 
 /*
@@ -114,6 +115,7 @@ function allItemsBought(buyerID) {
     return itemsBoughtRef.child(`${buyerID}`).once("value")
         .then(d => d.val())
         .then(val => Object.keys(val))
+        .then(val => val ? Object.keys(val): [])
 }
 
 /*

@@ -98,7 +98,7 @@ class App extends Component {
         <div className="App">
           <NavBar action={this.handleSignIn} userUID={this.state.currentUserUID} userEmail ={this.state.currentUserEmail} updateSearchTerm={(searchTerm) => (this.setState({ searchTerm }))} reaction={this.handleSignOut} />
           <div>
-            <Route path="/landingpage" component={LandingPage} />
+            <Route exact path="/" component={LandingPage} />
             <Route path="/createaccount" component={CreateAccount} />
             <Route path="/signin" component={SignIn} />
             <Route path="/sellstuff" component={SellStuff} />
