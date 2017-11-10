@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
-import backendFunctions from '../backend-mockup.js'
+import backendFunctions from '../backend-firebase.js'
 import Item from './Item';
+
 class ShopAll extends Component {
     constructor(props) {
         super(props);
@@ -20,12 +20,12 @@ class ShopAll extends Component {
     }
 
     updateListings = (listingIDs) => {
-        const itemDescriptions = listingIDs.map(itemId => {
-            let itemDesc = backendFunctions.getItemDescription(itemId);
-            itemDesc.listingID = itemId;
-            return itemDesc;
-        });
-        this.setState({ allListings: itemDescriptions })
+        // const itemDescriptions = listingIDs.map(itemId => {
+        //     let itemDesc = backendFunctions.getItemDescription(itemId);
+        //     itemDesc.listingID = itemId;
+        //     return itemDesc;
+        // });
+        // this.setState({ allListings: itemDescriptions })
     }
 
     handleBuy = (item, listingID) => {
@@ -55,7 +55,7 @@ class ShopAll extends Component {
                 <h1 className="title">Things to buy </h1>
                 <div className="results">
                     <ul>
-                        {this.state.allListings.map(this.displayForSale)}
+                        {/* {this.state.allListings.map(this.displayForSale)} */}
                     </ul>
                     {this.state.allListings.length === 0 && <div> Nothing to buy </div>}
 

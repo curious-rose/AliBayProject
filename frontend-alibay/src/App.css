@@ -42,3 +42,19 @@
   width: 200px;
 
 }
+
+/* landing page */
+
+.landpageimg {
+  height: 350px;
+}
+
+.landingActions {
+  display: block;
+}
+.landingSearch {
+  display: block;
+  align-self: center;
+  width: 500px;
+  height: 75px;
+}

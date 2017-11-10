@@ -91,11 +91,11 @@ The seller will see the listing in his history of items sold
     returns: a promise
 */
 function buy(buyerID, sellerID, listingID) {
-    p1 = itemsSoldRef.child(`${sellerID}/${listingID}`)
+    const p1 = itemsSoldRef.child(`${sellerID}/${listingID}`)
         .set("true")
-    p2 = itemsBoughtRef.child(`${buyerID}/${listingID}`)
+    const p2 = itemsBoughtRef.child(`${buyerID}/${listingID}`)
         .set("true")
-    p3 = allItemsRef.child(`${listingID}`)
+    const p3 = allItemsRef.child(`${listingID}`)
         .update({
             forSale: false
         })
@@ -114,6 +114,7 @@ function allItemsSold(sellerID) {
     return itemsSoldRef.child(`${sellerID}`).once("value")
         .then(d => d.val())
         .then(val => Object.keys(val))
+        .then(val => val ? Object.keys(val) : [])
 }
 
 /*
@@ -122,9 +123,11 @@ allItemsBought returns the IDs of all the items bought by a buyer
     returns: a promise containing an array of listing IDs
 */
 function allItemsBought(buyerID) {
+    console.log(buyerID);
     return itemsBoughtRef.child(`${buyerID}`).once("value")
         .then(d => d.val())
         .then(val => Object.keys(val))
+        .then(val => val ? Object.keys(val): [])
 }
 
 /*
@@ -208,7 +211,9 @@ function searchForListings(string, sellerID) {
 async function test() {
     await database.ref('/').set(null);
     let sellerID = genUID();
+        // let sellerID = 'hqgm6MorpPUhS9NhtTN4g3HdG2x1'
     let buyerID = genUID();
+        // let buyerID = 'hqgm6MorpPUhS9NhtTN4g3HdG2x1'
 
     console.log("all good")
 

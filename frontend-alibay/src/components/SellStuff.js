@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
-import backendFunctions from '../backend-mockup.js'
+import backendFunctions from '../backend-firebase.js'
 
 class SellStuff extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     // createListing( price, title, blurb, sellerID,)
 
     handleSubmit = (event) => {
         event.preventDefault();
         backendFunctions.createListing(
-        this.priceInput.value,this.titleInput.value, this.blurbInput.value, +localStorage.getItem('userID'));
+       this.props.userUID, this.priceInput.value,this.titleInput.value, this.blurbInput.value,);
         // console.log('local storage ', localStorage.userID, '',localStorage.getItem('userID') );
         this.props.history.push('/accountpage')
     }
