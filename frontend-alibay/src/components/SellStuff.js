@@ -7,7 +7,7 @@ class SellStuff extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         backendFunctions.createListing(
-        this.priceInput.value,this.titleInput.value, this.blurbInput.value, +localStorage.getItem('userID'));
+       this.props.userUID, this.priceInput.value,this.titleInput.value, this.blurbInput.value,);
         // console.log('local storage ', localStorage.userID, '',localStorage.getItem('userID') );
         this.props.history.push('/accountpage')
     }
