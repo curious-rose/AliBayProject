@@ -99,12 +99,9 @@ class App extends Component {
           <NavBar action={this.handleSignIn} userUID={this.state.currentUserUID} userEmail ={this.state.currentUserEmail} updateSearchTerm={(searchTerm) => (this.setState({ searchTerm }))} reaction={this.handleSignOut} />
           <div>
             <Route exact path="/" component={LandingPage} />
-            <Route path="/createaccount" component={CreateAccount} />
-            <Route path="/signin" component={SignIn} />
-            <Route path="/sellstuff" component={SellStuff} />
-            <Route path="/searchresults" component={SearchResults} />
+            <Route path="/sellstuff" render={() => this.state.currentUserEmail ? (<SellStuff userUID={this.state.currentUserUID} />) : null } />
             <Route path="/accountpage" render={() => this.state.currentUserEmail ? (<AccountPage userUID={this.state.currentUserUID} />) : null } />
-            <Route path="/shopall" render={() => (<ShopAll searchTerm={this.state.searchTerm} />)} />
+            <Route path="/shopall" render={() => (<ShopAll userUID={this.state.currentUserUID} searchTerm={this.state.searchTerm} />)} />
           </div>
         </div>
       </BrowserRouter>

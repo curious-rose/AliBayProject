@@ -15,6 +15,7 @@ class Item extends Component {
         return (
             <li>
                 <div>
+                    <img src={this.props.item.imageURL}/>
                     <h4>{this.props.item.title} - <span>{this.props.item.price}</span></h4>
                     <p>{this.props.item.blurb}</p>
                    { this.props.item.forSale === true ?

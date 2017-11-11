@@ -10,7 +10,7 @@ class AccountPage extends Component {
             itemsBought: [],
             itemsSold: [],
             itemsForSale: [],
-            item: {},
+            items: [],
 
         }
     }
@@ -18,13 +18,15 @@ class AccountPage extends Component {
     componentDidMount() {
 
         backendFunctions.allItemsBought(this.props.userUID).then(itemsBought => this.setState({ itemsBought }));
-        backendFunctions.allItemsSold(this.props.userUID).then(itemsSold => this.setState({ itemsSold }));
-        backendFunctions.allListings(this.props.userUID).then(itemsForSale => {
-            itemsForSale.map(listingId => {
-                backendFunctions.getItemDescription(listingId).then(item => this.setState({ item }))
-            })
-            this.setState({ itemsForSale })
-        })
+        // backendFunctions.allItemsSold(this.props.userUID).then(itemsSold => this.setState({ itemsSold }));
+        // backendFunctions.allListings(this.props.userUID).then(itemsForSale => {
+        //     itemsForSale.map(listingId => {
+        //         backendFunctions.getItemDescription(listingId).then(itemObject => this.setState( st => ({
+        //             items: st.items.concat(itemObject)
+        //         })))
+        //     })
+        //     this.setState({ itemsForSale })
+        // })
 
 
 
@@ -44,17 +46,23 @@ class AccountPage extends Component {
 
 
     displayItems = (listingID) => {
-
-        // 
-        return (
-            <li>
-                <div>
-                    <h4>{this.state.item.title} - <span>{this.state.item.price}</span></h4>
-                    <p>{this.state.item.blurb}</p>
-
-                </div>
-            </li>
+        backendFunctions.getItemDescription(listingID).then( itemObject =>
+            {
+            return (
+                <li>
+                    <div>
+                        <img src={itemObject.imageURL}></img>
+                        <h4>{itemObject.title} - <span>{itemObject.price}</span></h4>
+                        <span>{itemObject.blurb}</span>  
+    
+                    </div>
+                </li>
+            )
+        }
+        
         )
+      
+
     }
 
     render() {

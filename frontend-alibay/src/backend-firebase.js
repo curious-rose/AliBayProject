@@ -7,7 +7,7 @@ var config = {
     authDomain: "curious-rose-alibay.firebaseapp.com",
     databaseURL: "https://curious-rose-alibay.firebaseio.com",
     projectId: "curious-rose-alibay",
-    storageBucket: "curious-rose-alibay.appspot.com/",
+    storageBucket: "curious-rose-alibay.appspot.com",
     messagingSenderId: "946803609775"
   };
   firebase.initializeApp(config);
@@ -15,7 +15,7 @@ var config = {
 const database = firebase.database();
 
 const storage = firebase.storage()
-let storageRef = storage.ref("")
+const storageRef = storage.ref("")
 
 const itemsBoughtRef = database.ref("itemsBought") // database node recording all users' bought items as listing ID numbers
 const itemsSoldRef = database.ref("itemsSold") //same for sold items
@@ -41,11 +41,12 @@ function createListing(sellerID, price, title, blurb, imageFile) {
     const listingID = `item_${genUID()}`
 
     //puts the image into our Storage
-    const chain1 = storageRef.child(`allItems/${sellerID}/${listingID}/${imageFile.name}`).put(imageFile)
-    .then(snapshot=>
-        //when finished, gets the data snapshot of the uploaded image,
-        //puts an child into allItemsRef, whose name is our item's listing ID
-    //and whose value is an object with our item's info (including the URL of the uploaded image)
+    const chain1 =
+     storageRef.child(`allItems/${sellerID}/${listingID}/${imageFile.name}`).put(imageFile)
+    .then(snapshot =>
+    //     //when finished, gets the data snapshot of the uploaded image,
+    //     //puts an child into allItemsRef, whose name is our item's listing ID
+    // //and whose value is an object with our item's info (including the URL of the uploaded image)
         allItemsRef.child(listingID).set({
         sellerID,
         price,
@@ -55,7 +56,9 @@ function createListing(sellerID, price, title, blurb, imageFile) {
         forSale: true
         //after setting, returns the listingID, so we can find our object again
         //or if there's an error, returns that error.
-    }).then(() => listingID).catch(err=>console.log(err)))
+    })
+    .then(() => listingID).catch(err=>console.log('here is the error', err))
+)
     return chain1
 
 
@@ -113,7 +116,7 @@ allItemsSold returns the IDs of all the items sold by a seller
 function allItemsSold(sellerID) {
     return itemsSoldRef.child(`${sellerID}`).once("value")
         .then(d => d.val())
-        .then(val => Object.keys(val))
+       
         .then(val => val ? Object.keys(val) : [])
 }
 
@@ -126,7 +129,6 @@ function allItemsBought(buyerID) {
     console.log(buyerID);
     return itemsBoughtRef.child(`${buyerID}`).once("value")
         .then(d => d.val())
-        .then(val => Object.keys(val))
         .then(val => val ? Object.keys(val): [])
 }
 
