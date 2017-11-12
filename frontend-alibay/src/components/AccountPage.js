@@ -11,7 +11,6 @@ class AccountPage extends Component {
             itemsBought: [],
             itemsSold: [],
             itemsForSale: [],
-            items: [],
 
         }
     }
@@ -21,32 +20,10 @@ class AccountPage extends Component {
         backendFunctions.allItemsBought(this.props.userUID).then(itemsBought => this.setState({ itemsBought }));
         backendFunctions.allItemsSold(this.props.userUID).then(itemsSold => this.setState({ itemsSold }));
         backendFunctions.allListings(this.props.userUID).then(itemsForSale => {
-        //     itemsForSale.map(listingId => {
-        //         backendFunctions.getItemDescription(listingId).then(itemObject => this.setState( st => ({
-        //             items: st.items.concat(itemObject)
-        //         })))
-        //     })
             this.setState({ itemsForSale })
         })
-
-
-
-        // todo: put in actual userID parameter
-        //    backendFunctions.allItemsBought(this.props.userUID).then(itemsBought => this.setState({ itemsBought }));
-        //   backendFunctions.allItemsSold(this.props.userUID).then(itemsSold => this.setState({ itemsSold }));
-        //  backendFunctions.allListings(this.props.userUID).then(itemsForSale => this.setState({ itemsForSale }))
-        // let itemsBought = []
-        // if (boughtIds) {
-        //     itemsBought = boughtIds.map(backendFunctions.getItemDescription)
-        // }
-        // console.log('items bought ', itemsBought)
-        // 
-
     }
 
-
-
-   
 
     render() {
         return (
@@ -54,8 +31,6 @@ class AccountPage extends Component {
                 <h1>Your Account. Welcome (Enter username)</h1>
                 <Link to="/shopall" className="shopButton"><button>Shop now!</button></Link>
                 <Link to="/sellstuff" className="sellSomething"><button>Sell Something!</button></Link>
-                {this.state.items
-                    ?
                     <div>
                         <div className="accountAction">
                             <div className="ItemsPurchased">
@@ -84,8 +59,7 @@ class AccountPage extends Component {
                         </div>
 
                     </div>
-                    :
-                    (<h3>one moment please...</h3>)
+                
                 }
 
             </div>

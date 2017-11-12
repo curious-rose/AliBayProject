@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
 import backendFunctions from '../backend-firebase.js'
 import Item from './Item';
+import Listing from './Listing'
 
 class ShopAll extends Component {
     constructor(props) {
         super(props);
-        this.state = { allListings: [],
-                        item: {}
+        this.state = {
+            allListings: [],
+
         }
     }
 
     componentDidMount() {
-        // const listingIDs = backendFunctions.allListings();
         backendFunctions.allListings().then(itemsForSale => {
-            itemsForSale.map(listingId => {
-                backendFunctions.getItemDescription(listingId).then(item => this.setState({ item }))
-                .then(() => console.log('shop all state', this.state.item))
-            })
             this.setState({ allListings: itemsForSale })
-        // this.updateListings(listingIDs);
         })
 
     }
@@ -37,17 +33,19 @@ class ShopAll extends Component {
     //     this.setState({ allListings: itemDescriptions })
     // }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        this.state.item.forSale = false;
-        this.handleBuy(this.state.item, this.state.item.listingID);
-        this.forceUpdate();
-        // todo - unclear if forceUpdate() is a good idea 
-    }
+    // handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     this.state.item.forSale = false;
+    //     this.handleBuy(this.state.item, this.state.item.listingID);
+    //     // this.forceUpdate();
+    //     // todo - unclear if forceUpdate() is a good idea 
+    // }
 
     handleBuy = (item, listingID) => {
+        console.log('userIUD, sellerID, listingID', this.props.userUID, item.sellerID, listingID)
         try {
-            backendFunctions.buy(this.props.userIUD, item.sellerID, listingID)
+            backendFunctions.buy(this.props.userUID, item.sellerID, listingID)
+            .then
 
         } catch (error) {
             console.log('please sign in ', error)
@@ -56,29 +54,12 @@ class ShopAll extends Component {
 
 
     displayForSale = (listing) => {
-        // let item = backendFunctions.getItemDescription(listingID);
-
         return (
-            <li>
-                <div>
-                    <img src={this.state.item.imageURL}></img>
-                    <h4>{this.state.item.title} - <span>{this.state.item.price}</span></h4>
-                    <span>{this.state.item.blurb}</span>
-                    { this.state.item.forSale === true ?
-                    <button onClick={this.handleSubmit}>Buy now</button> :
-                    <button disabled={true}>Sold</button>
-                   } 
-
-                </div>
-            </li>
+            <Item item={listing} key={listing.listingID} listingID={listing} handleBuy={this.handleBuy} />
         )
-        // return (
-        //     <Item item={listing} key={listing.listingID} handleBuy={this.handleBuy} />
-        // )
-
     }
 
-
+//<Item data={this.state.allListings} />
 
     render() {
 
@@ -86,11 +67,15 @@ class ShopAll extends Component {
             <div className="shopAll">
                 <h1 className="title">Things to buy </h1>
                 <div className="results">
-                    <ul>
-                        {this.state.allListings.map(this.displayForSale)}
-                    </ul>
-                    {this.state.allListings.length === 0 && <div> Nothing to buy </div>}
-
+                    <div className="ItemsForSale">
+                    <h2>Items for Sale</h2>
+                        {this.state.allListings.length 
+                        ?
+                            ( <ul>  {this.state.allListings.map(this.displayForSale)} </ul>)
+                        :
+                            (<p>You don't have anything for sale.</p>)
+                        }
+                    </div>
                 </div>
             </div>
         );

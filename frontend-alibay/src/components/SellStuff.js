@@ -9,15 +9,11 @@ class SellStuff extends Component {
                       listingUploaded: false}
     }
 
-    // createListing( price, title, blurb, sellerID,)
-
     handleSubmit = (event) => {
         event.preventDefault();
         backendFunctions.createListing(
             this.props.userUID, this.priceInput.value, this.titleInput.value, this.blurbInput.value, this.state.imageFile)
-            // .then(chain1 => console.log('chain 1', chain1))
-        // console.log('local storage ', localStorage.userID, '',localStorage.getItem('userID') );
-        // 
+       
         .then(() => this.setState({listingUploaded: true}) )
         // .then(() => this.props.history.push('/accountpage'))
     }
@@ -33,7 +29,6 @@ class SellStuff extends Component {
         this.setState({imageFile: file})
 
     }
-
     
     render() {
         return (
