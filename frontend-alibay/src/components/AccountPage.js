@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import backendFunctions from '../backend-firebase.js'
+import Listing from './Listing'
 
 
 class AccountPage extends Component {
@@ -18,15 +19,15 @@ class AccountPage extends Component {
     componentDidMount() {
 
         backendFunctions.allItemsBought(this.props.userUID).then(itemsBought => this.setState({ itemsBought }));
-        // backendFunctions.allItemsSold(this.props.userUID).then(itemsSold => this.setState({ itemsSold }));
-        // backendFunctions.allListings(this.props.userUID).then(itemsForSale => {
+        backendFunctions.allItemsSold(this.props.userUID).then(itemsSold => this.setState({ itemsSold }));
+        backendFunctions.allListings(this.props.userUID).then(itemsForSale => {
         //     itemsForSale.map(listingId => {
         //         backendFunctions.getItemDescription(listingId).then(itemObject => this.setState( st => ({
         //             items: st.items.concat(itemObject)
         //         })))
         //     })
-        //     this.setState({ itemsForSale })
-        // })
+            this.setState({ itemsForSale })
+        })
 
 
 
@@ -45,25 +46,7 @@ class AccountPage extends Component {
 
 
 
-    displayItems = (listingID) => {
-        backendFunctions.getItemDescription(listingID).then( itemObject =>
-            {
-            return (
-                <li>
-                    <div>
-                        <img src={itemObject.imageURL}></img>
-                        <h4>{itemObject.title} - <span>{itemObject.price}</span></h4>
-                        <span>{itemObject.blurb}</span>  
-    
-                    </div>
-                </li>
-            )
-        }
-        
-        )
-      
-
-    }
+   
 
     render() {
         return (
@@ -77,28 +60,24 @@ class AccountPage extends Component {
                         <div className="accountAction">
                             <div className="ItemsPurchased">
                                 <h2>Items Purchased</h2>
-                                {this.state.itemsBought ?
-                                    (<ul>
-                                        {this.state.itemsBought.map(this.displayItems)}
-                                    </ul>) :
+                                {this.state.itemsBought.length ?
+                                 <Listing data={this.state.itemsBought}/> :
                                     (<p>You haven't bought anything yet.</p>)
                                 }
                             </div>
                             <div className="ItemsSold">
                                 <h2>Items Sold</h2>
-                                {this.state.itemsSold ?
-                                    (<ul>
-                                        {this.state.itemsSold.map(this.displayItems)}
-                                    </ul>) :
+                                {this.state.itemsSold.length ?
+                                    <Listing data={this.state.itemsSold}/>
+                                    :
                                     (<p>You haven't sold anything yet.</p>)
                                 }
                             </div>
                             <div className="ItemsForSale">
                                 <h2>Items for Sale</h2>
-                                {this.state.itemsSold ?
-                                    (<ul>
-                                        {this.state.itemsForSale.map(this.displayItems)}
-                                    </ul>) :
+                                {this.state.itemsForSale.length ?
+                                    <Listing data={this.state.itemsForSale}/>
+                                     :
                                     (<p>You don't have anything for sale.</p>)
                                 }
                             </div>
