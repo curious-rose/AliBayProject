@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import backendFunctions from '../backend-firebase.js';
-import styles from './css/Item.css'
+import styles from './css/Listing.css'
 
 
 class Item extends Component {
@@ -27,9 +27,14 @@ class Item extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.state.listing.forSale = false;
-        this.props.handleBuy(this.state.listing, this.props.listingID);
-        this.forceUpdate();
+        if (this.props.userUID) {
+            this.state.listing.forSale = false;
+            this.props.handleBuy(this.state.listing, this.props.listingID);
+            this.forceUpdate();
+        } else {
+            alert('Please sign in')
+        }
+        
         // todo - unclear if forceUpdate() is a good idea 
     }
 
@@ -37,17 +42,18 @@ class Item extends Component {
     render() {
         return (
             <li>
-                <div className="items">
-                    <img className="productImage" src={this.state.listing.imageURL} />
+                <div className="listing">
+                    
+                    <img className="listingImage" src={this.state.listing.imageURL} />
                     <h4>{this.state.listing.title} - $ <span>{this.state.listing.price}</span></h4>
-                    <p>Description: {this.state.listing.blurb}</p>
+                    <span>Description: {this.state.listing.blurb}</span>
                     {this.state.listing.forSale === true ?
                         <button className="buyButton" onClick={this.handleSubmit}>Buy now</button> :
-                        <button disabled={true}>Sold</button>
+                        <button className ="soldButton" disabled={true}>Sold</button>
                     }
+                    
                 </div>
-            </li>
-
+            </li>    
         )
     };
 }

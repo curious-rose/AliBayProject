@@ -19,9 +19,8 @@ class NavBar extends Component {
                     }
                     
                     { 
-                        !this.props.userEmail ?
-                        <button className="navButton" onClick={this.props.action}>Sign in</button> :
-                        <button className="navButton" onClick={this.props.reaction}>Sign out</button>
+                        !this.props.userEmail &&
+                        <button className="navButton" onClick={this.props.action}>Sign in</button> 
                     }
                     
                    

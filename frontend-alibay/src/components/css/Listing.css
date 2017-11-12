@@ -3,3 +3,38 @@
     margin-top: 20px;
     margin-right: 10px;
 }
+
+.listings{
+    display:inline-grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-row-gap:1em;
+}
+
+.accountPage {
+    font-family: 'Roboto', sans-serif;
+}
+
+button {
+    margin: 0.5em 2em;
+    -webkit-border-radius: 18;
+    -moz-border-radius: 18;
+    border-radius: 18px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #949494;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none; 
+    
+}
+
+button:hover{
+    background: #000000;
+    text-decoration: none;
+}
+
+.soldButton {
+   background: #7C4747;
+   pointer-events: none;
+  
+}

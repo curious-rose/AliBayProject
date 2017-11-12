@@ -26,7 +26,7 @@ class Listing extends Component {
     displayItems = (listing) => {
         return (
             <li>
-                <div>
+                <div className="listing">
                     <img className="listingImage" src={listing.imageURL}></img>
                     <h4>{listing.title} -  $ <span>{listing.price}</span></h4>
                     <span>Description: {listing.blurb}</span>  
@@ -39,7 +39,7 @@ class Listing extends Component {
     render() {
         console.log('state: ', this.state)
         return (
-            <div>
+            <div className="listings">
             {this.state.listings.map(this.displayItems)}
 
             </div>

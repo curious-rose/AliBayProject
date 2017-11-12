@@ -1,0 +1,10 @@
+
+.landingActions {
+    display: grid;
+    grid-template-rows: 50% 50%
+}
+.enterMarket {
+    width: 100%;
+    height: 75%
+  
+}

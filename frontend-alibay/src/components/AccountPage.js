@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import backendFunctions from '../backend-firebase.js'
 import Listing from './Listing'
-
+import styles from './css/AccountPage.css'
 
 class AccountPage extends Component {
     constructor(props) {
@@ -27,7 +27,7 @@ class AccountPage extends Component {
 
     render() {
         return (
-            <div className="AccountPage">
+            <div className="accountPage">
                 <h1>Your Account</h1>
                 <Link to="/shopall" className="shopButton"><button>Shop now!</button></Link>
                 <Link to="/sellstuff" className="sellSomething"><button>Sell Something!</button></Link>
