@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import backendFunctions from '../backend-firebase.js'
 import Item from './Item';
-import Listing from './Listing'
+import styles from './css/Item.css'
+
 
 class ShopAll extends Component {
     constructor(props) {

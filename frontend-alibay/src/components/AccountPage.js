@@ -28,7 +28,7 @@ class AccountPage extends Component {
     render() {
         return (
             <div className="AccountPage">
-                <h1>Your Account. Welcome (Enter username)</h1>
+                <h1>Your Account</h1>
                 <Link to="/shopall" className="shopButton"><button>Shop now!</button></Link>
                 <Link to="/sellstuff" className="sellSomething"><button>Sell Something!</button></Link>
                     <div>
@@ -57,11 +57,7 @@ class AccountPage extends Component {
                                 }
                             </div>
                         </div>
-
                     </div>
-                
-                }
-
             </div>
         );
     };

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logoImage from '../images/logo.png';
+import styles from './css/LandingPage.css'
 
 class LandingPage extends Component {
 
