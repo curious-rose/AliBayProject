@@ -19,10 +19,12 @@ class ShopAll extends Component {
 
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     const listingIDs = backendFunctions.searchForListings(nextProps.searchTerm);
+    componentWillReceiveProps(nextProps) {
+        backendFunctions.searchForListings(nextProps.searchTerm)
+        .then(filteredResults => this.setState({ allListings: filteredResults }) )
+    //const listingIDs = 
     //     this.updateListings(listingIDs);
-    // }
+    }
 
     // updateListings = (listingIDs) => {
     //     const itemDescriptions = listingIDs.map(itemId => {
@@ -30,16 +32,9 @@ class ShopAll extends Component {
     //         itemDesc.listingID = itemId;
     //         return itemDesc;
     //     });
-    //     this.setState({ allListings: itemDescriptions })
+    //     
     // }
 
-    // handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     this.state.item.forSale = false;
-    //     this.handleBuy(this.state.item, this.state.item.listingID);
-    //     // this.forceUpdate();
-    //     // todo - unclear if forceUpdate() is a good idea 
-    // }
 
     handleBuy = (item, listingID) => {
         console.log('userIUD, sellerID, listingID', this.props.userUID, item.sellerID, listingID)

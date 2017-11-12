@@ -49,10 +49,8 @@ class App extends Component {
     }
   }
 
-  // uid should be user email
-  // todo: remove hardcoded userID
+
   componentDidMount() {
-    // let userId = 1000;
     localStorage.getItem('userEmail') ?
     console.log('localStorage has the email', localStorage.getItem('userEmail') ) :
     console.log('local storage has no email')
@@ -62,13 +60,6 @@ class App extends Component {
   }
 
   handleSignIn = (event) => {
-    // console.log('handleSignIn');
-    // // let userId = 1000;
-    // localStorage.setItem('userID', userId);
-    // backendFunctions.initializeUserIfNeeded(userId);
-    // this.setState({
-    //   currentUserId: userId
-    // })
 
     if (this.state.currentUserEmail === null) {
       firebase.auth()

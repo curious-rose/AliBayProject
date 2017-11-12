@@ -59,6 +59,7 @@ function createListing(sellerID, price, title, blurb, imageFile) {
     })
     .then(() => listingID).catch(err=>console.log('here is the error', err))
 )
+    console.log('chain1',chain1)
     return chain1
 
 

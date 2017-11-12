@@ -3,14 +3,14 @@ import backendFunctions from '../backend-firebase.js';
 
 class Listing extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             listings: []
         }
-
     }
+    
     componentDidMount() {
-        this.getListings(this.props.data)
+    this.getListings(this.props.data)
     }
 
     getListings = (listingsArray) => {
@@ -23,7 +23,6 @@ class Listing extends Component {
     }
 
     displayItems = (listing) => {
-
         return (
             <li>
                 <div>
@@ -33,11 +32,7 @@ class Listing extends Component {
 
                 </div>
             </li>
-            
-        
         )
-      
-
     }
 
     render() {
