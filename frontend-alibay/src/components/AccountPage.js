@@ -29,8 +29,8 @@ class AccountPage extends Component {
         return (
             <div className="accountPage">
                 <h1>Your Account</h1>
-                <Link to="/shopall" className="shopButton"><button>Shop now!</button></Link>
-                <Link to="/sellstuff" className="sellSomething"><button>Sell Something!</button></Link>
+                <Link to="/shopall" className="shopButton"><button>Shop</button></Link>
+                <Link to="/sellstuff" className="sellSomething"><button>Sell Something</button></Link>
                     <div>
                         <div className="accountAction">
                             <div className="ItemsPurchased">

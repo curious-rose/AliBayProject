@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import AccountPage from './components/AccountPage'
-import CreateAccount from './components/CreateAccount'
 import LandingPage from './components/LandingPage'
 import SellStuff from './components/SellStuff'
 import SearchResults from './components/SearchResults'
@@ -94,6 +93,7 @@ class App extends Component {
             <Route path="/accountpage" render={() => this.state.currentUserEmail ? (<AccountPage userUID={this.state.currentUserUID} />) : null } />
             <Route path="/shopall" render={() => (<ShopAll userUID={this.state.currentUserUID} searchTerm={this.state.searchTerm} />)} />
           </div>
+          <footer>Curious Rose™</footer>
         </div>
       </BrowserRouter>
     );

@@ -4,10 +4,10 @@
     margin-right: 10px;
 }
 
-.listings{
+.listings {
     display:inline-grid;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-row-gap:1em;
+    grid-row-gap: 1em;
 }
 
 .accountPage {
@@ -29,7 +29,7 @@ button {
 }
 
 button:hover{
-    background: #000000;
+    background: rgb(38, 65, 91);
     text-decoration: none;
 }
 

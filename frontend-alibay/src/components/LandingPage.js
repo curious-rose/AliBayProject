@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logoImage from '../images/logo.png';
 import styles from './css/LandingPage.css'
-import enterMarket from '../images/enterMarket.jpg'
+import enterMarket from '../images/enterMarketCropped.jpg'
 
 class LandingPage extends Component {
 
@@ -10,8 +10,8 @@ class LandingPage extends Component {
         return (
             <div className="landingPage">
                 <div className="landingActions">
-                <h3>Welcome to Ali Bay</h3>
-                    <div>
+               <Link to="/shopall/"><h1>Welcome to Ali Bay</h1></Link>
+                    <div className="imgDiv">
                     <img className="enterMarket" src={enterMarket} />
                     </div>
                     

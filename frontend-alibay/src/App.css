@@ -30,36 +30,11 @@ html {
   to { transform: rotate(360deg); }
 }
 
-
-/* nav bar */
-.navBar {
-  display: flex;
-} 
-.navSearchInput {
-  height: 20px;
-  width: 300px;
-}
-
-.imgLogo {
-  height: 72px;
-  width: 200px;
-
-}
-
-/* landing page */
-
-.landpageimg {
-  height: 350px;
-}
-
-.landingActions {
-  display: block;
-}
-.landingSearch {
-  display: block;
-  align-self: center;
-  width: 500px;
-  height: 75px;
+footer {
+  padding: 4em 2em;
+  text-align: right;
+  font-weight: lighter;
+  font-size: 1em;
 }
 
 ul{

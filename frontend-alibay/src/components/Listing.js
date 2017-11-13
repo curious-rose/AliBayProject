@@ -28,8 +28,8 @@ class Listing extends Component {
             <li>
                 <div className="listing">
                     <img className="listingImage" src={listing.imageURL}></img>
-                    <h4>{listing.title} -  $ <span>{listing.price}</span></h4>
-                    <span>Description: {listing.blurb}</span>  
+                    <h4>{listing.title} -  $<span>{listing.price}</span></h4>
+                    <span>{listing.blurb}</span>  
 
                 </div>
             </li>

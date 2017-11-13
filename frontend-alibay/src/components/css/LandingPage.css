@@ -8,3 +8,17 @@
     height: 75%
   
 }
+
+h1 {
+    font-size: 60px;
+    font-weight: lighter;
+    margin: 0 0 1% 0;
+    background: rgb(38, 65, 91);
+    padding: 5%;
+    color: #f6eeee;
+}
+
+h1:link {
+    border: none;
+}
+

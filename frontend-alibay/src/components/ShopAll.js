@@ -42,7 +42,7 @@ class ShopAll extends Component {
         
         try {
             backendFunctions.buy(this.props.userUID, item.sellerID, listingID)
-            .then
+            
 
         } catch (error) {
             console.log('please sign in ', error)
