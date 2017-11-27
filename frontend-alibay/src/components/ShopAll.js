@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import backendFunctions from '../backend-firebase.js'
 import Item from './Item';
-import Listing from './Listing'
+import styles from './css/Listing.css'
+
 
 class ShopAll extends Component {
     constructor(props) {
@@ -22,6 +23,7 @@ class ShopAll extends Component {
     componentWillReceiveProps(nextProps) {
         backendFunctions.searchForListings(nextProps.searchTerm)
         .then(filteredResults => this.setState({ allListings: filteredResults }) )
+    
     //const listingIDs = 
     //     this.updateListings(listingIDs);
     }
@@ -37,10 +39,10 @@ class ShopAll extends Component {
 
 
     handleBuy = (item, listingID) => {
-        console.log('userIUD, sellerID, listingID', this.props.userUID, item.sellerID, listingID)
+        
         try {
             backendFunctions.buy(this.props.userUID, item.sellerID, listingID)
-            .then
+            
 
         } catch (error) {
             console.log('please sign in ', error)
@@ -50,7 +52,7 @@ class ShopAll extends Component {
 
     displayForSale = (listing) => {
         return (
-            <Item item={listing} key={listing.listingID} listingID={listing} handleBuy={this.handleBuy} />
+            <Item item={listing} key={listing.listingID} listingID={listing} handleBuy={this.handleBuy} userUID={this.props.userUID}/>
         )
     }
 
@@ -61,17 +63,13 @@ class ShopAll extends Component {
         return (
             <div className="shopAll">
                 <h1 className="title">Things to buy </h1>
-                <div className="results">
-                    <div className="ItemsForSale">
-                    <h2>Items for Sale</h2>
                         {this.state.allListings.length 
                         ?
-                            ( <ul>  {this.state.allListings.map(this.displayForSale)} </ul>)
+                            ( <div className="listings">  {this.state.allListings.map(this.displayForSale)} </div>)
                         :
                             (<p>You don't have anything for sale.</p>)
                         }
-                    </div>
-                </div>
+                    
             </div>
         );
     };

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import backendFunctions from '../backend-firebase.js';
+import styles from './css/Listing.css'
 
 class Listing extends Component {
     constructor(props) {
@@ -25,9 +26,9 @@ class Listing extends Component {
     displayItems = (listing) => {
         return (
             <li>
-                <div>
-                    <img src={listing.imageURL}></img>
-                    <h4>{listing.title} - <span>{listing.price}</span></h4>
+                <div className="listing">
+                    <img className="listingImage" src={listing.imageURL}></img>
+                    <h4>{listing.title} -  $<span>{listing.price}</span></h4>
                     <span>{listing.blurb}</span>  
 
                 </div>
@@ -38,7 +39,7 @@ class Listing extends Component {
     render() {
         console.log('state: ', this.state)
         return (
-            <div>
+            <div className="listings">
             {this.state.listings.map(this.displayItems)}
 
             </div>

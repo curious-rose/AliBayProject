@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import backendFunctions from '../backend-firebase.js'
 import Listing from './Listing'
-
+import styles from './css/AccountPage.css'
 
 class AccountPage extends Component {
     constructor(props) {
@@ -27,10 +27,10 @@ class AccountPage extends Component {
 
     render() {
         return (
-            <div className="AccountPage">
-                <h1>Your Account. Welcome (Enter username)</h1>
-                <Link to="/shopall" className="shopButton"><button>Shop now!</button></Link>
-                <Link to="/sellstuff" className="sellSomething"><button>Sell Something!</button></Link>
+            <div className="accountPage">
+                <h1>Your Account</h1>
+                <Link to="/shopall" className="shopButton"><button>Shop</button></Link>
+                <Link to="/sellstuff" className="sellSomething"><button>Sell Something</button></Link>
                     <div>
                         <div className="accountAction">
                             <div className="ItemsPurchased">
@@ -57,11 +57,7 @@ class AccountPage extends Component {
                                 }
                             </div>
                         </div>
-
                     </div>
-                
-                }
-
             </div>
         );
     };
