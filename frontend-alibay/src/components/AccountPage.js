@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import backendFunctions from '../backend-firebase.js'
 import Listing from './Listing'
-import styles from './css/AccountPage.css'
 
 class AccountPage extends Component {
     constructor(props) {
