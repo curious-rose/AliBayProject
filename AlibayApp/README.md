@@ -11,7 +11,8 @@ A simple marketplace where users can advertise and purchase items for sale, and 
 
 #### Account Page
 
-![landing page](https://raw.githubusercontent.com/curious-rose/AliBayProject/tree/master/AlibayApp/src/images/account.png)
+![landing page](https://raw.githubusercontent.com/curious-rose/AliBayProject/master/AlibayApp/src/images/account.png)
+
 
 #### Sell Something
 
