@@ -3,20 +3,20 @@
 A simple marketplace where users can advertise and purchase items for sale, and keep track what they have bought and sold. 
 #### Landing Page
 
-![landing page](https://raw.githubusercontent.com/curious-rose/AliBayProject/tree/master/AlibayApp/src/images/landing-page.png)
+![landing page](https://raw.githubusercontent.com/curious-rose/AliBayProject/master/AlibayApp/images/landing-page.png)
 
 #### Shop All
 
-![landing page](https://raw.githubusercontent.com/curious-rose/AliBayProject/tree/master/AlibayApp/src/images/shop.png)
+![landing page](https://raw.githubusercontent.com/curious-rose/AliBayProject/master/AlibayApp/images/shop.png)
 
 #### Account Page
 
-![landing page](https://raw.githubusercontent.com/curious-rose/AliBayProject/master/AlibayApp/src/images/account.png)
+![landing page](https://raw.githubusercontent.com/curious-rose/AliBayProject/master/AlibayApp/images/account.png)
 
 
 #### Sell Something
 
-![landing page](https://raw.githubusercontent.com/curious-rose/AliBayProject/tree/master/AlibayApp/src/images/sell-item.png)
+![landing page](https://raw.githubusercontent.com/curious-rose/AliBayProject/master/AlibayApp/images/sell-item.png)
 
 
 
