@@ -1,27 +1,7 @@
 ## AliBay Marketplace
 
 A simple marketplace where users can advertise and purchase items for sale, and keep track what they have bought and sold. 
-#### Landing Page
 
-![landing page](https://raw.githubusercontent.com/curious-rose/AliBayProject/master/AlibayApp/images/landing-page.png)
-
-#### Shop All
-
-![landing page](https://raw.githubusercontent.com/curious-rose/AliBayProject/master/AlibayApp/images/shop.png)
-
-#### Account Page
-
-![landing page](https://raw.githubusercontent.com/curious-rose/AliBayProject/master/AlibayApp/images/account.png)
-
-
-#### Sell Something
-
-![landing page](https://raw.githubusercontent.com/curious-rose/AliBayProject/master/AlibayApp/images/sell-item.png)
-
-
-
-### Getting Started
-Simply clone the code, open in your code editor of choice, hit npm start and it should run.
 
 ### Built With
 
